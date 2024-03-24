@@ -1,7 +1,16 @@
 version: "3"
 services:
   spark:
-    image: apache/spark:3.5.1
-    restart: unless-stopped
+    container_name: spark
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - ./workdir:/workdir
+    networks:
+      - minikube
+
+networks:
+  minikube:
+    name: minikube
+    external: true
