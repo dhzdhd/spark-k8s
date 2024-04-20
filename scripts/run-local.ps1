@@ -2,7 +2,9 @@ Write-Output "Fetching cluster information"
 $ip = kubectl cluster-info | Select-String -Pattern "\d{5}$" | Select-Object -ExpandProperty Matches | Select-Object -ExpandProperty Value
 
 Write-Output "Adding roles"
-kubectl create clusterrolebinding default-view --clusterrole=edit --serviceaccount=default:default
+kubectl create clusterrolebinding default-view `
+    --clusterrole=edit `
+    --serviceaccount=default:default
 
 Write-Output "Starting minikube dashboard"
 $job = Start-Job -ScriptBlock { minikube dashboard } |  Select-Object -Property Name -Unique
