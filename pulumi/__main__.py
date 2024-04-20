@@ -49,11 +49,7 @@ route_table_association = aws.ec2.RouteTableAssociation(
     "routeTableAssociation", subnet_id=subnet.id, route_table_id=route_table.id
 )
 
-ports = (
-    ("tcp", 80),
-    ("tcp", 443),
-    ("tcp", 22),
-)
+ports = (("tcp", 80), ("tcp", 443), ("tcp", 22), ("tcp", 6443))
 ingress = [
     aws.ec2.SecurityGroupIngressArgs(
         from_port=port, to_port=port, protocol=protocol, cidr_blocks=["0.0.0.0/0"]
