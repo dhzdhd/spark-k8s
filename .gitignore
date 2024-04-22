@@ -1,3 +1,4 @@
 workdir/
+server-workdir/
 hosts
 ansible/
